@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using UserBusiness.IoC;
 using UserRepository.DBContext;
+using UserRepository.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,12 +16,12 @@ var devCorsPolicy = "devCorsPolicy";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(devCorsPolicy, builder => {
-        //builder.WithOrigins("http://localhost:800").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
         builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-        //builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
-        //builder.SetIsOriginAllowed(origin => true);
     });
 });
+
+DIServices.AddServices(builder.Services);
+DIRepositories.AddRepositories(builder.Services);
 
 var app = builder.Build();
 

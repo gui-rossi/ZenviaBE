@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserDomain.Entities
 {
-    public class AddressEntity
+    public class AddressEntity : BaseEntity
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Alias { get; set; }

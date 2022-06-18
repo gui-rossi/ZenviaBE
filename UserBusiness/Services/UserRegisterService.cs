@@ -12,9 +12,9 @@ namespace UserBusiness.Services
 {
     internal class UserRegisterService : IUserRegisterService
     {
-        private readonly IUserRepository _repository;
+        private readonly IUsersRepository _repository;
 
-        public UserRegisterService(IUserRepository repository)
+        public UserRegisterService(IUsersRepository repository)
         {
             _repository = repository;
         }

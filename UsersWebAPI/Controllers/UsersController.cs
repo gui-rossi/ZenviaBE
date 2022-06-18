@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UserBusiness.Interfaces;
+using UserDomain.UserProperties;
 using UserDomain.ViewModels;
 
 namespace UsersWebAPI.Controllers

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersWebAPI", "UsersWebAPI\UsersWebAPI.csproj", "{6A5645BA-109D-4C5A-9105-75FCB60173DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsersWebAPI", "UsersWebAPI\UsersWebAPI.csproj", "{6A5645BA-109D-4C5A-9105-75FCB60173DE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{998FAD5B-EACD-457A-B065-64ECDED52079}"
 EndProject
@@ -15,11 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{B1C8EC14-A9C4-4131-A496-F00424B5CFE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserRepository", "UserRepository\UserRepository.csproj", "{F89A5543-A50A-42EC-BC85-00A6A1CB1F1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserRepository", "UserRepository\UserRepository.csproj", "{F89A5543-A50A-42EC-BC85-00A6A1CB1F1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserDomain", "UserDomain\UserDomain.csproj", "{A00B2E2E-D5FE-4A7E-AC8E-693DFCE70CEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserDomain", "UserDomain\UserDomain.csproj", "{A00B2E2E-D5FE-4A7E-AC8E-693DFCE70CEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserBusiness", "UserBusiness\UserBusiness.csproj", "{6EFDA86B-D1A8-450B-B5C6-B8B896FA08D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserBusiness", "UserBusiness\UserBusiness.csproj", "{6EFDA86B-D1A8-450B-B5C6-B8B896FA08D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserDomain.Entities
 {
-    public class TelephoneNumberEntity
+    public class TelephoneNumberEntity : BaseEntity
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Alias { get; set; }
