@@ -14,5 +14,9 @@ namespace UserDomain.UserProperties
         public string nascimento { get; set; }
         public string rg { get; set; }
         public string cpf { get; set; }
+        public string facebook { get; set; }
+        public string instagram { get; set; }
+        public string twitter { get; set; }
+        public string linkedIn { get; set; }
     }
 }

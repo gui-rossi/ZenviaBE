@@ -23,7 +23,39 @@ namespace UserBusiness.Services
         {
             //validate user and map to entity
 
-            UserEntity user = new();
+            ICollection<TelephoneNumberEntity> tels = userVM.telefones
+                .Select(x => new TelephoneNumberEntity()
+                {
+                    Alias = x.nome,
+                    Number = x.numero
+                }).ToArray();
+
+            ICollection<AddressEntity> ends = userVM.enderecos
+                .Select(x => new AddressEntity()
+                {
+                    Alias = x.nome,
+                    Address = $"{x.endereco}, {x.cidade}",
+                    Number = x.numero,
+                    Complemento = x.comp,
+                }).ToArray();
+
+            UserEntity user = new()
+            {
+                Id = new Guid(userVM.informacoes.id),
+                Name = $"{userVM.informacoes.nome} {userVM.informacoes.sobrenome}",
+                RG = userVM.informacoes.rg,
+                CPF = userVM.informacoes.cpf,
+                Birthdate = DateTime.Parse(userVM.informacoes.nascimento),
+                Facebook = userVM.informacoes.facebook,
+                Instagram = userVM.informacoes.instagram,
+                Twitter = userVM.informacoes.twitter,
+                LinkedIn = userVM.informacoes.linkedIn,
+
+                telephoneNumbers = tels,
+                addresses = ends
+            };
+
+
             await _repository.InsertNewUser(user);
 
             await _repository.SaveChangesAsync();
