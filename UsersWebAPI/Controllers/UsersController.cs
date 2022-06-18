@@ -21,5 +21,17 @@ namespace UsersWebAPI.Controllers
         {
             await _service.AddNewUser(userVM);
         }
+
+        [HttpGet("GetAllUsers")]
+        public async Task<ICollection<UserViewModel>> GetAllUser()
+        {
+            return await _service.FetchAllUsers();
+        }
+
+        [HttpPut("ModifyUser")]
+        public async Task ChangeUserInfo([FromBody] UserViewModel userVM)
+        {
+            await _service.ModifyUser(userVM);
+        }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using UserDomain.Entities;
 using UserRepository.DBContext;
 using UserRepository.Interface;
@@ -16,6 +12,26 @@ namespace UserRepository.DataRepository
         public async Task InsertNewUser(UserEntity userE)
         {
             await _dbSet.AddAsync(userE);
+        }
+
+        public async Task<ICollection<UserEntity>> SelectAllUsers()
+        {
+            return await _db.User
+                .Include(a => a.addresses)
+                .Include(t => t.telephoneNumbers)
+                //.AsNoTracking()
+                .ToArrayAsync();
+        }
+
+        public void UpdateUser(UserEntity userE)
+        {
+            _dbSet.Update(userE);
+        }
+
+        public async Task<UserEntity> SelectUser(Guid id)
+        {
+            return await _dbSet
+                .FindAsync(id);
         }
 
         public Task SaveChangesAsync()

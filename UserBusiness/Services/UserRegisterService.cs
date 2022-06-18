@@ -60,5 +60,26 @@ namespace UserBusiness.Services
 
             await _repository.SaveChangesAsync();
         }
+
+        public async Task<ICollection<UserViewModel>> FetchAllUsers()
+        {
+            ICollection<UserEntity> users = await _repository.SelectAllUsers();
+
+            ICollection<UserViewModel> usersVM = users.Select(x => new UserViewModel()
+            {
+
+            }).ToArray();
+
+            return usersVM;
+        }
+
+        public async Task ModifyUser(UserViewModel userVM)
+        {
+            await _repository.SelectUser(id);
+
+
+
+            await _repository.SaveChangesAsync();
+        }
     }
 }
