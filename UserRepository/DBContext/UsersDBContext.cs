@@ -14,7 +14,10 @@ namespace UserRepository.DBContext
         public DbSet<TelephoneNumberEntity> TelephoneNumbers { get; set; }
         public DbSet<AddressEntity> Addresses { get; set; }
 
-        public UsersDBContext(DbContextOptions<UsersDBContext> options) : base(options) { }
+        public UsersDBContext(DbContextOptions<UsersDBContext> options) : base(options) 
+        { 
+        
+        }
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
