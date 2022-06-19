@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UserBusiness.Interfaces;
+using UserBusiness.Validations;
 using UserDomain.Entities;
 using UserDomain.UserProperties;
 using UserDomain.ViewModels;
@@ -22,14 +23,17 @@ namespace UserBusiness.Services
 
         public async Task AddNewUser(UserViewModel userVM)
         {
-            //validate user and map to entity
+            if (!ValidaCPF.IsCpf(userVM.informacoes.cpf)) throw new Exception("Cpf invalido");
+            if (!ValidaRG.isRg(userVM.informacoes.rg)) throw new Exception("RG invalido");
+
+            //validar outros campos
 
             ICollection<TelephoneNumberEntity> tels = userVM.telefones
-                .Select(x => new TelephoneNumberEntity()
-                {
-                    Alias = x.nome,
-                    Number = x.numero
-                }).ToArray();
+                    .Select(x => new TelephoneNumberEntity()
+                    {
+                        Alias = x.nome,
+                        Number = x.numero
+                    }).ToArray();
 
             ICollection<AddressEntity> ends = userVM.enderecos
                 .Select(x => new AddressEntity()
@@ -103,9 +107,40 @@ namespace UserBusiness.Services
 
         public async Task ModifyUser(UserViewModel userVM)
         {
-            //await _repository.SelectUser(id);
+            UserEntity userE = await _repository.SelectUser(new Guid(userVM.informacoes.id));
 
+            if (userE == null) throw new NullReferenceException("User does not exist");
 
+            ICollection<TelephoneNumberEntity> tels = userVM.telefones
+                .Select(x => new TelephoneNumberEntity()
+                {
+                    Alias = x.nome,
+                    Number = x.numero
+                }).ToArray();
+
+            ICollection<AddressEntity> ends = userVM.enderecos
+                .Select(x => new AddressEntity()
+                {
+                    Alias = x.nome,
+                    Address = x.endereco,
+                    City = x.cidade,
+                    Number = x.numero,
+                    Complemento = x.comp,
+                }).ToArray();
+
+            userE.Name = userVM.informacoes.nome;
+            userE.LastName = userVM.informacoes.sobrenome;
+            userE.RG = userVM.informacoes.rg;
+            userE.CPF = userVM.informacoes.cpf;
+            userE.Birthdate = DateTime.Parse(userVM.informacoes.nascimento);
+            userE.Facebook = userVM.informacoes.facebook;
+            userE.Instagram = userVM.informacoes.instagram;
+            userE.Twitter = userVM.informacoes.twitter;
+            userE.LinkedIn = userVM.informacoes.linkedIn;
+            userE.telephoneNumbers = tels;
+            userE.addresses = ends;
+
+            _repository.UpdateUser(userE);
 
             await _repository.SaveChangesAsync();
         }
