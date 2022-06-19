@@ -19,7 +19,7 @@ namespace UserRepository.DataRepository
             return await _db.User
                 .Include(a => a.addresses)
                 .Include(t => t.telephoneNumbers)
-                //.AsNoTracking()
+                .AsNoTracking()
                 .ToArrayAsync();
         }
 

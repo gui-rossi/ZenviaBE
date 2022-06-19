@@ -44,6 +44,7 @@ namespace UserRepository.DBContext
 
             user.HasKey(x => x.Id);
             user.Property(x => x.Name).HasColumnType("nvarchar").HasMaxLength(100).IsRequired();
+            user.Property(x => x.LastName).HasColumnType("nvarchar").HasMaxLength(100).IsRequired();
             user.Property(x => x.RG).HasColumnType("nvarchar").HasMaxLength(14).IsRequired();
             user.Property(x => x.CPF).HasColumnType("nvarchar").HasMaxLength(16).IsRequired();
             user.Property(x => x.Facebook).HasColumnType("nvarchar").HasMaxLength(256);
@@ -61,6 +62,7 @@ namespace UserRepository.DBContext
             addresses.Property(x => x.Address).HasColumnType("nvarchar").HasMaxLength(256).IsRequired();
             addresses.Property(x => x.Number).HasColumnType("nvarchar").HasMaxLength(256).IsRequired();
             addresses.Property(x => x.Complemento).HasColumnType("nvarchar").HasMaxLength(256).IsRequired();
+            addresses.Property(x => x.City).HasColumnType("nvarchar").HasMaxLength(256).IsRequired();
         }
 
         private void ConfigureTelephoneNumbersTable(ModelBuilder mb)

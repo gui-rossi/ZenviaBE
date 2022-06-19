@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UserBusiness.Interfaces;
 using UserDomain.Entities;
+using UserDomain.UserProperties;
 using UserDomain.ViewModels;
 using UserRepository.Interface;
 
@@ -34,7 +35,8 @@ namespace UserBusiness.Services
                 .Select(x => new AddressEntity()
                 {
                     Alias = x.nome,
-                    Address = $"{x.endereco}, {x.cidade}",
+                    Address = x.endereco,
+                    City = x.cidade,
                     Number = x.numero,
                     Complemento = x.comp,
                 }).ToArray();
@@ -42,7 +44,8 @@ namespace UserBusiness.Services
             UserEntity user = new()
             {
                 Id = new Guid(userVM.informacoes.id),
-                Name = $"{userVM.informacoes.nome} {userVM.informacoes.sobrenome}",
+                Name = userVM.informacoes.nome,
+                LastName = userVM.informacoes.sobrenome,
                 RG = userVM.informacoes.rg,
                 CPF = userVM.informacoes.cpf,
                 Birthdate = DateTime.Parse(userVM.informacoes.nascimento),
@@ -67,7 +70,32 @@ namespace UserBusiness.Services
 
             ICollection<UserViewModel> usersVM = users.Select(x => new UserViewModel()
             {
-
+                informacoes = new Informacoes()
+                {
+                    id = x.Id.ToString(),
+                    nome = x.Name,
+                    sobrenome = x.LastName,
+                    cpf = x.CPF,
+                    rg = x.RG,
+                    nascimento = x.Birthdate?.ToString(),
+                    facebook = x.Facebook,
+                    instagram = x.Instagram,
+                    twitter = x.Twitter,
+                    linkedIn = x.LinkedIn
+                },
+                telefones = x.telephoneNumbers.Select(tel => new Telefone()
+                {
+                    nome = tel.Alias,
+                    numero = tel.Number
+                }).ToList(),
+                enderecos = x.addresses.Select(address => new Endereco()
+                {
+                    nome = address.Alias,
+                    endereco = address.Address,
+                    numero = address.Number,
+                    comp = address.Complemento,
+                    cidade = address.City
+                }).ToList()
             }).ToArray();
 
             return usersVM;
@@ -75,7 +103,7 @@ namespace UserBusiness.Services
 
         public async Task ModifyUser(UserViewModel userVM)
         {
-            await _repository.SelectUser(id);
+            //await _repository.SelectUser(id);
 
 
 
