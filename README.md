@@ -1,6 +1,7 @@
 # Zenvia challenge web app
 
 A aplicação é formada por um frontend (ZenviaFE) em ReactJS e um backend (ZenviaBE) em .NET. Com SQL Server na azure.
+Para testar, basta rodar o backend, dar npm i no front e npm start. Como o banco de dados está na nuvem nao ha necessidade de fazer nada nele.
 
 ## Sobre o Backend:
 
@@ -11,6 +12,7 @@ O projeto usa entity framework code-first com SQL server.
 Nas controllers temos 3 endpoints: um Get que pega todos os usuarios da app, um Post que adiciona usuario e um Put que atualiza usuario.
 Há alguma validação de cpf, rg e id na adição de modificação de usuarios. Além do mapeamento entre entidades e view models.
 O mapeamento esta nas services, o ideal seria colocar elas em uma classe separada.
+No projeto de repositorios é onde ficam as chamadas para o banco de dados, que fica na Azure.
 
 O projeto segue conceitos de clean code, utilização de inversão de controle com injeção de dependencia e generics.
 Há um repositorio base com metodos em comum entre os outros repositorios.
