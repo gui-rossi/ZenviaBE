@@ -12,5 +12,7 @@ namespace UserRepository.Interface
         Task InsertNewUser(UserEntity userE);
         Task<ICollection<UserEntity>> SelectAllUsers();
         Task<UserEntity> SelectUser(Guid id);
+        Task<UserEntity> SelectUserByCpf(string cpf);
+        Task<UserEntity> SelectUserByRg(string rg);
     }
 }

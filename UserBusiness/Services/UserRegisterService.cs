@@ -26,7 +26,9 @@ namespace UserBusiness.Services
             if (!ValidaCPF.IsCpf(userVM.informacoes.cpf)) throw new Exception("Cpf invalido");
             if (!ValidaRG.isRg(userVM.informacoes.rg)) throw new Exception("RG invalido");
 
-            //validar outros campos
+            if (await _repository.SelectUserByCpf(userVM.informacoes.cpf) != null) throw new Exception("CPF ja cadastrado");
+            if (await _repository.SelectUserByRg(userVM.informacoes.rg) != null) throw new Exception("RG ja cadastrado");
+            if (await _repository.SelectUser(new Guid(userVM.informacoes.id)) != null) throw new Exception("Usuario ja cadastrado");
 
             ICollection<TelephoneNumberEntity> tels = userVM.telefones
                     .Select(x => new TelephoneNumberEntity()
@@ -107,6 +109,9 @@ namespace UserBusiness.Services
 
         public async Task ModifyUser(UserViewModel userVM)
         {
+            if (await _repository.SelectUserByCpf(userVM.informacoes.cpf) != null) throw new Exception("CPF ja cadastrado");
+            if (await _repository.SelectUserByRg(userVM.informacoes.rg) != null) throw new Exception("RG ja cadastrado");
+
             UserEntity userE = await _repository.SelectUser(new Guid(userVM.informacoes.id));
 
             if (userE == null) throw new NullReferenceException("User does not exist");

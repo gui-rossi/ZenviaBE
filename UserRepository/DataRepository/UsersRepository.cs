@@ -30,5 +30,19 @@ namespace UserRepository.DataRepository
                 .Include(t => t.telephoneNumbers)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
+
+        public async Task<UserEntity> SelectUserByCpf(string cpf)
+        {
+            return await _dbSet
+                .AsNoTracking()
+                .SingleOrDefaultAsync(x => x.CPF == cpf);
+        }
+
+        public async Task<UserEntity> SelectUserByRg(string rg)
+        {
+            return await _dbSet
+                .AsNoTracking()
+                .SingleOrDefaultAsync(x => x.RG == rg);
+        }
     }
 }
