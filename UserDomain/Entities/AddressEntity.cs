@@ -8,7 +8,7 @@ namespace UserDomain.Entities
 {
     public class AddressEntity : BaseEntity
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
         public string Alias { get; set; }
         public string Address { get; set; }
         public string Number { get; set; }

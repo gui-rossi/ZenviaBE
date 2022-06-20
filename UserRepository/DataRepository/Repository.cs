@@ -22,5 +22,15 @@ namespace UserRepository.DataRepository
             _db = context;
             _dbSet = _db.Set<T>();
         }
+
+        public void UpdateUser(T entity)
+        {
+            _dbSet.Update(entity);
+        }
+
+        public Task SaveChangesAsync()
+        {
+            return _db.SaveChangesAsync();
+        }
     }
 }

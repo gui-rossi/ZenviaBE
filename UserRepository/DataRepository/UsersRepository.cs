@@ -23,20 +23,12 @@ namespace UserRepository.DataRepository
                 .ToArrayAsync();
         }
 
-        public void UpdateUser(UserEntity userE)
-        {
-            _dbSet.Update(userE);
-        }
-
         public async Task<UserEntity> SelectUser(Guid id)
         {
             return await _dbSet
-                .FindAsync(id);
-        }
-
-        public Task SaveChangesAsync()
-        {
-            return _db.SaveChangesAsync();
+                .Include(a => a.addresses)
+                .Include(t => t.telephoneNumbers)
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
     }
 }

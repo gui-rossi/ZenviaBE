@@ -132,7 +132,7 @@ namespace UserBusiness.Services
             userE.LastName = userVM.informacoes.sobrenome;
             userE.RG = userVM.informacoes.rg;
             userE.CPF = userVM.informacoes.cpf;
-            userE.Birthdate = DateTime.Parse(userVM.informacoes.nascimento);
+            userE.Birthdate = string.IsNullOrEmpty(userVM.informacoes.nascimento) ? null : DateTime.Parse(userVM.informacoes.nascimento);
             userE.Facebook = userVM.informacoes.facebook;
             userE.Instagram = userVM.informacoes.instagram;
             userE.Twitter = userVM.informacoes.twitter;

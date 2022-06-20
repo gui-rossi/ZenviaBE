@@ -9,5 +9,7 @@ namespace UserRepository.Interface
 {
     public interface IRepository<T> where T : BaseEntity
     {
+        Task SaveChangesAsync();
+        void UpdateUser(T entity);
     }
 }

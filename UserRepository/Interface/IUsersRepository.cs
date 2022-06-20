@@ -7,12 +7,10 @@ using UserDomain.Entities;
 
 namespace UserRepository.Interface
 {
-    public interface IUsersRepository
+    public interface IUsersRepository : IRepository<UserEntity>
     {
         Task InsertNewUser(UserEntity userE);
         Task<ICollection<UserEntity>> SelectAllUsers();
-        void UpdateUser(UserEntity userE);
         Task<UserEntity> SelectUser(Guid id);
-        Task SaveChangesAsync();
     }
 }
