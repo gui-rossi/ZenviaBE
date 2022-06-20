@@ -18,4 +18,4 @@ Há um repositorio base com metodos em comum entre os outros repositorios.
 A estrutura funciona com o usuario tendo as informações base em uma tabela e referencias para outras 2 tabelas, de telefones e endereços, ja que o mesmo pode ter muitos de cada.
 Portanto a estrutura fica que o usuario tem uma relacao de 1:n com telefones e enderecos
 
-![img](https://imgur.com/a/qpIDb5V)
+![merr](https://user-images.githubusercontent.com/70178925/174519620-2c4dc831-b562-49be-8f72-da01b01553c7.png)
